@@ -1,12 +1,15 @@
 <?php
+/*
+Author   : Fariz Yoga Syahputra
+Facebook : http://www.facebook.com/yoga.aprilio
+Github   : http://www.github.com/farizyoga
+*/
 if ( ! defined('BASEPATH')) exit('No direct access script allowed');
 
 class Userize {
 
-	//the default role, commonly used for people who are accessed the web without logging in
 	private $default_role = 1;
-
-	//redirect user to somewhare if doesn't have permission to controller in charge
+	private $system_status = true;
 	private $forbidden_controller = 'deny';
 
 	public function init() {
@@ -21,12 +24,13 @@ class Userize {
 	public function getLoggedUser() {
 
 		$CI =& get_instance();
-		
-		if ($CI->session->userdata('id_user')) {
+		//$CI->session->set_userdata('id_user', 1);
+		if ($CI->session->userdata('id_user') != null) {
 			return $CI->session->userdata('id_user');
 		} else {
-			return $this->default_role;
+			return false;
 		}
+		
 	}
 
 	/**
@@ -46,10 +50,18 @@ class Userize {
 	public function getUserRole() {
 
 		$CI =& get_instance();
-		$CI->db->select('role');
-		$CI->db->where('id_user', $this->getLoggedUser());
-		$result = $CI->db->get('users')->row_array();
-		return $result['role'];
+		if ($this->getLoggedUser()) {
+		
+			$CI->db->select('role');
+			$CI->db->where('id_user', $this->getLoggedUser());
+			$result = $CI->db->get('users')->row();
+			return $result->role;
+
+		} else {
+
+			return $this->default_role;
+
+		}
 
 	}
 
@@ -58,15 +70,19 @@ class Userize {
 	 */
 	public function isAccessGranted() {
 
-		$CI =& get_instance();
-		$CI->db->where(array('id_role' => $this->getUserRole(), 'controller_name' => $this->getController()));
-		$query = $CI->db->get('controller_access');
+		if ($this->system_status) {
 		
-		if ($query->num_rows() == 0) {
+			$CI =& get_instance();
+			$CI->db->where(array('id_role' => $this->getUserRole(), 'controller_name' => $this->getController()));
+			$query = $CI->db->get('controller_access');
+			
+			if ($query->num_rows() == 0) {
 
-			header('Location:'. $CI->config->item('base_url'). $this->forbidden_controller);
+				header('Location:'. $CI->config->item('base_url'). $this->forbidden_controller);
 
-		} 
+			} 
+
+		}
 
 	}
 
