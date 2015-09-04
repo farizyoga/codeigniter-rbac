@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct access script allowed');
 class Userize {
 
 	//the default role, commonly used for people who are accessed the web without logging in
-	private $default_role = 2;
+	private $default_role = 1;
 
 	//redirect user to somewhare if doesn't have permission to controller in charge
 	private $forbidden_controller = 'deny';
