@@ -7,7 +7,6 @@ class Depan_controller extends CI_Controller {
 
 		parent::__construct();
 		$this->load->model('depan_model');
-		$this->load->library('userize');
 
 	}
 

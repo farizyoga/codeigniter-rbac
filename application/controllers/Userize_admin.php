@@ -6,7 +6,6 @@ class Userize_admin extends CI_Controller {
 	public function __construct() {
 
 		parent::__construct();
-		$this->load->library('userize');
 		$this->load->helper('directory');
 		$this->userize->init();
 
@@ -108,7 +107,9 @@ class Userize_admin extends CI_Controller {
 			if (!$this->userize->isControllerCreated($post['controller_name'])) {
 
 				$this->userize->addController($post);
-				$this->load->view('userize/generate_controller');	
+				$data['file_name'] = $this->input->post('controller_name', true);
+				$data['file_location'] = APPPATH . 'controllers/' . $data['file_name'].'.php';
+				$this->load->view('userize/generate_controller', $data);	
 
 			} else {
 
