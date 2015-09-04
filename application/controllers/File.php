@@ -9,7 +9,7 @@ Github   : www.github.com/farizyoga
 
 if ( ! defined('BASEPATH')) exit('No direct access script allowed'); 
 
-class Home extends CI_Controller {
+class File extends CI_Controller {
 
 	public function __construct() {
 

@@ -30,7 +30,7 @@
 
 		  } else {
 
-		  	   echo "<span class='btn btn-danger'>No controller access defined for this role</span>";
+		  	   echo "No controller access defined for this role";
 
 		  }
 		  ?>

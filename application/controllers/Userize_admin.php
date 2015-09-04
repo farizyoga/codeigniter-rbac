@@ -107,9 +107,28 @@ class Userize_admin extends CI_Controller {
 			if (!$this->userize->isControllerCreated($post['controller_name'])) {
 
 				$this->userize->addController($post);
-				$data['file_name'] = $this->input->post('controller_name', true);
-				$data['file_location'] = APPPATH . 'controllers/' . $data['file_name'].'.php';
-				$this->load->view('userize/generate_controller', $data);	
+
+				if (strpos($post['controller_name'], '/')) {
+
+					$folder = explode('/',$post['controller_name']);
+					$num_folder = max(array_keys($folder));
+					$file = $folder[$num_folder];
+					for($array_index = 0; $array_index < $num_folder; $array_index++) {
+
+						$directory[] = $folder[$array_index];
+
+					}
+					$directories = join($directory,'/');
+					$data['file_name'] = $file;
+					$data['file_location'] = APPPATH . 'controllers/' . $directories .'/' .$data['file_name'] .'.php';
+
+				} else {	
+
+					$data['file_name'] = $this->input->post('controller_name', true);
+					$data['file_location'] = APPPATH . 'controllers/' . $data['file_name'].'.php';
+
+				}
+				$this->load->view('userize/generate_controller', $data);
 
 			} else {
 
@@ -119,6 +138,14 @@ class Userize_admin extends CI_Controller {
 
 		}
 		$this->load->view('userize/footer');
+
+	}
+
+	public function delete_access() {
+
+		$id_access = $this->uri->segment(3);
+		$this->userize->deleteAccess($id_access);
+		redirect('userize_admin/roles');
 
 	}
 

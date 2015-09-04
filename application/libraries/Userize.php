@@ -3,6 +3,12 @@ if ( ! defined('BASEPATH')) exit('No direct access script allowed');
 
 class Userize {
 
+	//the default role, commonly used for people who are accessed the web without logging in
+	private $default_role = 2;
+
+	//redirect user to somewhare if doesn't have permission to controller in charge
+	private $forbidden_controller = 'deny';
+
 	public function init() {
 
 		return $this->isAccessGranted();
@@ -15,9 +21,12 @@ class Userize {
 	public function getLoggedUser() {
 
 		$CI =& get_instance();
-		$CI->session->set_userdata('id_user', 1);
-		return $logged_user = $CI->session->userdata('id_user');
-
+		
+		if ($CI->session->userdata('id_user')) {
+			return $CI->session->userdata('id_user');
+		} else {
+			return $this->default_role;
+		}
 	}
 
 	/**
@@ -55,7 +64,7 @@ class Userize {
 		
 		if ($query->num_rows() == 0) {
 
-			header('Location:'. $CI->config->item('base_url'). 'deny');
+			header('Location:'. $CI->config->item('base_url'). $this->forbidden_controller);
 
 		} 
 
@@ -220,6 +229,14 @@ class Userize {
 			return false;
 
 		}
+
+	}
+
+	public function deleteAccess($id) {
+
+		$CI =& get_instance();
+		$CI->db->where('id',$id);
+		$CI->db->delete('controller_access');
 
 	}
 
