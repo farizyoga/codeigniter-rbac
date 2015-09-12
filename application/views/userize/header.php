@@ -65,6 +65,8 @@
                     <li>
                         <a href="<?php echo base_url('userize_admin/controller_generator'); ?>">Generate Controller</a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('userize_admin/logout'); ?>">Logout</a>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

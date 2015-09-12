@@ -8,7 +8,7 @@ if ( ! defined('BASEPATH')) exit('No direct access script allowed');
 
 class Userize {
 
-	private $default_role = 1;
+	private $default_role = 3;
 	private $system_status = true;
 	private $forbidden_controller = 'deny';
 
@@ -24,13 +24,33 @@ class Userize {
 	public function getLoggedUser() {
 
 		$CI =& get_instance();
-		//$CI->session->set_userdata('id_user', 1);
 		if ($CI->session->userdata('id_user') != null) {
 			return $CI->session->userdata('id_user');
 		} else {
 			return false;
 		}
 		
+	}
+
+	public function auth($email, $pass) {
+
+		$CI =& get_instance();
+		$query = $CI->db->where('email', $email);
+		$query = $CI->db->where('password', md5($pass));
+		$query = $CI->db->get('users');
+		if ($query->num_rows() == 1) {
+
+			$query = $query->row();
+			$CI->session->set_userdata('id_user', $query->id_user);
+			header('Location:'. $CI->config->item('base_url'). 'welcome');
+
+
+		} else {
+
+			header('Location:'. $CI->config->item('base_url'). 'nomatch');
+
+		}
+
 	}
 
 	/**
