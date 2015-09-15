@@ -48,6 +48,7 @@ class Userize_admin extends CI_Controller {
 
 	public function assign_access() {
 
+		$data['role'] = $this->input->post('');
 		$data['roles'] = $this->userize->getAllRoles();
 		$data['menus'] = $this->userize->getValidControllers();
 		$this->load->view('userize/header');
@@ -56,10 +57,19 @@ class Userize_admin extends CI_Controller {
 
 	}
 
+	public function system_status() {
+
+		$this->load->view('userize/header');
+		$this->load->view('userize/index');
+		$this->load->view('userize/footer');
+
+	}
+
 	public function get_free_controller_by_role() {
 
 		$role = $this->uri->segment(3);
 		$controller_list = $this->userize->getFreeControllersByRole($role);
+		$data['role'] = $this->userize->getRole($role);
 		$data['list'] = $controller_list;
 		$this->load->view('userize/controller_list', $data);
 
@@ -137,6 +147,7 @@ class Userize_admin extends CI_Controller {
 			}
 
 		}
+
 		$this->load->view('userize/footer');
 
 	}

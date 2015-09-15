@@ -276,6 +276,17 @@ class Userize {
 
 	}
 
+	public function getRole($id) 
+	{	
+		$CI =& get_instance();
+		$CI->db->select('role_name');
+		$CI->db->where('id_role' , $id);
+		$q = $CI->db->get('roles');
+		$q = $q->row();
+		return $q->role_name;
+	}
+
+
 	private function _isRoleRegistered($role) {
 
 		$CI =& get_instance();

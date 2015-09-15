@@ -1,6 +1,6 @@
 <?php
 if (empty($list)) {
-	echo "All access has been granted to this role";
+	echo "All access has been granted to ".$role;
 }
 foreach($list as $controller) {
 	?>
