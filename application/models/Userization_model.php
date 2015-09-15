@@ -9,7 +9,7 @@ if ( ! defined('BASEPATH')) exit('No direct access script allowed');
 class Userization_model extends CI_Model {
 
 	private $default_role = 3;
-	private $system_status = false;
+	private $system_status = true;
 	private $forbidden_controller = 'deny';
 
 	public function init() {
@@ -90,11 +90,15 @@ class Userization_model extends CI_Model {
 			$this->db->where(array('id_role' => $this->getUserRole(), 'controller_name' => $this->getController()));
 			$query = $this->db->get('controller_access');
 			
-			if ($query->num_rows() == 0) {
+			if ($this->getLoggedUser() && $query->num_rows() == 0) {
 
 				redirect(base_url($this->forbidden_controller));
 
-			} 
+			} else if (!$this->getLoggedUser()) {
+
+				redirect('login');
+
+			}
 
 		}
 
