@@ -77,7 +77,7 @@ class Userize_admin extends CI_Controller {
 
 	public function add_controller_access() {
 
-		if ($_POST) {
+		if ($this->input->post()) {
 
 			foreach($this->input->post('controller') as $access) {
 				
@@ -87,6 +87,8 @@ class Userize_admin extends CI_Controller {
 			}
 
 		}
+
+		redirect('userize_admin/roles');
 
 	}
 
@@ -152,6 +154,15 @@ class Userize_admin extends CI_Controller {
 
 	}
 
+	public function logs() {
+
+		$data['logs'] = $this->userize->getLogs();
+		$this->load->view('userize/header');
+		$this->load->view('userize/logs', $data);
+		$this->load->view('userize/footer');
+
+	}
+
 	public function delete_access() {
 
 		$id_access = $this->uri->segment(3);
@@ -163,7 +174,7 @@ class Userize_admin extends CI_Controller {
 	public function logout() {
 
 		$this->session->sess_destroy();
-		redirect('deny');
+		redirect(base_url('login'));;
 
 	}
 

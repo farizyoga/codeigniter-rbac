@@ -23,10 +23,8 @@
 		  	foreach($role->can as $access) {
 
 		  		echo $access->controller_name;
-				echo "<span style='float:right;'>".anchor('userize_admin/delete_access/'.$access->id, 'Delete Access');
-				echo '&nbsp;|&nbsp;';
-				echo anchor('userize_admin/set_default_page/'.$access->id, 'Set Default Page') . '</span>';
-				echo "<br>";
+				echo "<span style='float:right;'>".anchor('userize_admin/delete_access/'.$access->id, 'Delete Access')."</span>";
+				echo '<br>';
 
 		  	}
 

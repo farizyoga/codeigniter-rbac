@@ -40,13 +40,28 @@ class Userization_model extends CI_Model {
 
 			$query = $query->row();
 			$this->session->set_userdata('id_user', $query->id_user);
-			redirect('userize_admin');
+			$log = 'USER_AUTHENTICATION';
+			$detail = $this->getUser('email').' is logged in to the application as '.$this->getRole($this->getUserRole());
+			$this->_writesLog($log, $detail);
+			redirect(base_url($this->getHomepage()));
 
 		} else {
 
-			redirect('nomatch');
+			redirect(base_url('login'));
 
 		}
+
+	}
+
+	public function getHomepage() {
+
+		$this->db->select('*');
+		$this->db->from('controller_access');
+		$this->db->where('id_role', $this->getUserRole());
+		$this->db->limit(1);
+		$q = $this->db->get('controller_access');
+		$query = $q->row();
+		return $query->controller_name;
 
 	}
 
@@ -96,7 +111,7 @@ class Userization_model extends CI_Model {
 
 			} else if (!$this->getLoggedUser()) {
 
-				redirect('login');
+				redirect(base_url('login'));
 
 			}
 
@@ -237,7 +252,6 @@ class Userization_model extends CI_Model {
 	public function addControllerAccess($data) {
 
 		$this->db->insert('controller_access', $data);
-		redirect('userize_admin/roles');
 
 	}
 
@@ -274,6 +288,12 @@ class Userization_model extends CI_Model {
 		return $q->role_name;
 	}
 
+	public function getLogs() {
+
+		$q = $this->db->get('logs')->result();
+		return $q;
+
+	}
 
 	private function _isRoleRegistered($role) {
 	
@@ -303,6 +323,15 @@ class Userization_model extends CI_Model {
 			return $secure;
 
 		} 
+
+	}
+
+	private function _writesLog($logs, $detail) {
+
+		$data['logs'] = $logs;
+		$data['detail'] = $detail;
+		$data['from'] = $_SERVER['SERVER_ADDR'];
+		$this->db->insert('logs', $data);
 
 	}
 
