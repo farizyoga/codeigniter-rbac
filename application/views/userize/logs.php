@@ -32,15 +32,15 @@
 		  <th>Accessed From</th>
 		  <th>Timestamp</th>
 		 </tr>
-		</tfoot>
+		</foot>
 	</table>
 </div>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
     $('#example').DataTable( {
         "processing": true,
         "serverSide": true,
-        "ajax": "<?php echo base_url('userize_admin/get_logs'); ?>";
+        "ajax": "<?php echo base_url('userize_admin/get_logs'); ?>"
     } );
-} );
+} );	
 </script>
