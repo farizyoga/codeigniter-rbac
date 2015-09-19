@@ -163,6 +163,37 @@ class Userize_admin extends CI_Controller {
 
 	}
 
+	public function get_logs() {
+
+		$this->load->model('log_model');
+		$list = $this->log_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $log) {
+            $no++;
+            $row = array();
+            $row[] = $log->logs;
+            $row[] = $log->detail;
+            $row[] = $log->from;
+            $row[] = $log->timestamp;
+            //add html for action
+            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_person('."'".$log->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete_person('."'".$log->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+ 
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->log_model->count_all(),
+                        "recordsFiltered" => $this->log_model->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+
+    }
+
 	public function delete_access() {
 
 		$id_access = $this->uri->segment(3);

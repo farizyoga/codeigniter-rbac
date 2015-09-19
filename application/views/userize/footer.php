@@ -5,8 +5,6 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url('themes/userize/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
 
@@ -15,8 +13,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url('themes/userize/dist/js/sb-admin-2.js'); ?>"></script>
-
-    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 
 </body>
 
