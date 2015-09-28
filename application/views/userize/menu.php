@@ -8,13 +8,17 @@
 		 <tr>
 		  <th>No</th>
 		  <th>Controller Name</th>
+		  <th>Controller Allias</th>
+		  <th>Description</th>
 		 </tr>
 		</thead>
 		<tbody>
-		<?php $no = 1; foreach($menus as $menu) { if (empty($menu)) continue; ?>
+		<?php $no = 1; foreach($menus as $key => $menu) { if (empty($menu)) continue; ?>
 		 <tr>
 		  <td><?php echo $no++; ?></td>
-		  <td><?php echo $menu; ?></td>
+		  <td><?php echo $key; ?></td>
+		  <td><?php echo $menu['allias']; ?></td>
+		  <td><?php echo $menu['description']; ?></td>
 		 </tr>
 		<?php } ?>
 		</tbody>

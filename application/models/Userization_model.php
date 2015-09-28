@@ -152,7 +152,17 @@ class Userization_model extends CI_Model {
 	public function getValidControllers() {
 
 		$controller = array_intersect($this->getControllerInDB(), $this->controllerList());
-		return $controller;
+	 	foreach($controller as $c) {
+
+	 		$q = $this->db->select('*')
+	 				 	  ->from('controllers')
+	 				 	  ->where('controller_name', $c)
+	 				 	  ->get()
+	 				      ->row();
+	 		$result[$c] = array('allias' => $q->controller_allias, 'description' => $q->description);
+
+	 	}
+	 	return $result;
 
 	}
 
