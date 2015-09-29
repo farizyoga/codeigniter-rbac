@@ -8,7 +8,8 @@
 		 <tr>
 		  <th>No</th>
 		  <th>Controller Name</th>
-		  <th>Controller Allias</th>
+		  <th>Class Name</th>
+		  <th>Menu Name</th>
 		  <th>Description</th>
 		 </tr>
 		</thead>
@@ -18,6 +19,7 @@
 		  <td><?php echo $no++; ?></td>
 		  <td><?php echo $key; ?></td>
 		  <td><?php echo $menu['allias']; ?></td>
+		  <td><?php echo $menu['menu_name']; ?></td>
 		  <td><?php echo $menu['description']; ?></td>
 		 </tr>
 		<?php } ?>

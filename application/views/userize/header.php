@@ -130,7 +130,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url('userize_admin/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo base_url('rbac/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -154,34 +154,34 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/dashboard'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo base_url('rbac/dashboard'); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/users'); ?>"><i class="fa fa-dashboard fa-fw"></i> Users</a>                            
+                            <a href="<?php echo base_url('rbac/users'); ?>"><i class="fa fa-dashboard fa-fw"></i> Users</a>                            
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/roles'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Roles</a>
+                            <a href="<?php echo base_url('rbac/roles'); ?>"><i class="fa fa-bar-chart-o fa-fw"></i> Roles</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/controllers'); ?>"><i class="fa fa-table fa-fw"></i> Controllers</a>
+                            <a href="<?php echo base_url('rbac/controllers'); ?>"><i class="fa fa-table fa-fw"></i> Controllers</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/assign_access'); ?>"><i class="fa fa-edit fa-fw"></i> Assign Access</a>
+                            <a href="<?php echo base_url('rbac/assign_access'); ?>"><i class="fa fa-edit fa-fw"></i> Assign Access</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/controller_generator'); ?>"><i class="fa fa-wrench fa-fw"></i> Generate Controller</a>
+                            <a href="<?php echo base_url('rbac/controller_generator'); ?>"><i class="fa fa-wrench fa-fw"></i> Generate Controller</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('userize_admin/logs'); ?>"><i class="fa fa-wrench fa-fw"></i> Logs</a>
+                            <a href="<?php echo base_url('rbac/logs'); ?>"><i class="fa fa-wrench fa-fw"></i> Logs</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> System<span class="fa arrow"></span></a>
                             <ul class="nav second-level">
                                 <li>
-                                    <a href="<?php echo base_url('userize_admin/system_status'); ?>">System Status</a>
+                                    <a href="<?php echo base_url('rbac/system_status'); ?>">System Status</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url('userize_admin/system_configuration'); ?>">System Configuration</a>
+                                    <a href="<?php echo base_url('rbac/system_configuration'); ?>">System Configuration</a>
                                 </li>
                             </ul>
                         </li>

@@ -3,7 +3,7 @@
 <hr>
 </div>
 <div class="col-lg-4">
-<form action="<?php echo base_url('userize_admin/add_controller_access'); ?>" method="post">
+<form action="<?php echo base_url('rbac/add_controller_access'); ?>" method="post">
 		<label>Assign Access for</label>
 		<select name="role" class="form-control" onchange="get_controller(this.value)">
 		<option value="">Choose</option>
@@ -33,7 +33,7 @@
 <script type="text/javascript">
 function get_controller(role) {
 	$(document).ready(function() {
-		$.post( "<?php echo base_url('userize_admin/get_free_controller_by_role'); ?>/"+role, function( data ) {
+		$.post( "<?php echo base_url('rbac/get_free_controller_by_role'); ?>/"+role, function( data ) {
   		$( "#controller-result" ).html( data );
 		});
 	});

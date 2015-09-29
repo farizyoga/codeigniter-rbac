@@ -10,7 +10,7 @@ class Userization_model extends CI_Model {
 
 	private $default_role = 3;
 	private $system_status = true;
-	private $forbidden_controller = 'deny';
+	private $forbidden_controller = 'login';
 
 	public function init() {
 
@@ -159,7 +159,7 @@ class Userization_model extends CI_Model {
 	 				 	  ->where('controller_name', $c)
 	 				 	  ->get()
 	 				      ->row();
-	 		$result[$c] = array('allias' => $q->controller_allias, 'description' => $q->description);
+	 		$result[$c] = array('allias' => $q->controller_allias, 'menu_name' => $q->menu_name, 'description' => $q->description);
 
 	 	}
 	 	return $result;
