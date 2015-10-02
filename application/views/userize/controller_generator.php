@@ -8,7 +8,7 @@
 	<input type="text" name="controller_name" class="form-control" placeholder="Controller file name start with uppercase">
 	<br>
 	<label>Menu Name</label>
-	<input type="menu_name" class="form-control" placeholder="Menu Name">
+	<input type="text" name="menu_name" class="form-control" placeholder="Menu Name">
 	<br>
 	<label>Description</label>
 	<textarea name="description" class="form-control" placeholder="The description of the controller"></textarea>

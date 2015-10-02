@@ -27,5 +27,5 @@
 	</table>
 </div>
 <div class="col-lg-12">
-	<?php echo anchor('userize_admin/add_user', 'Add New User', 'class="btn btn-success"'); ?>
+	<?php echo anchor('rbac/add_user', 'Add New User', 'class="btn btn-success"'); ?>
 </div>
